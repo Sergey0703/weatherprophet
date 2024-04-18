@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -88,7 +89,7 @@ fun MainCard(){
                    color= Color.White
                )
                Text(
-                   text = "14'C",
+                   text = "14℃",
                    style= TextStyle(fontSize=65.sp),
                    color= Color.White
                )
@@ -111,7 +112,7 @@ fun MainCard(){
                    }
 
                    Text(
-                       text = "14'C/10'C",
+                       text = "14℃/10℃",
                        style= TextStyle(fontSize=16.sp),
                        color= Color.White
                    )
@@ -180,6 +181,13 @@ fun TabLayout(){
             state = pagerState,
             modifier = Modifier.weight(1.0f)
         ) { index ->
+            LazyColumn(
+                modifier=Modifier.fillMaxSize()
+            ) {
+                items(15){
+                    ListItem()
+                }
+            }
 
         }
 
