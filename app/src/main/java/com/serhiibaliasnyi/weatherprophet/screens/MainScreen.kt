@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -42,6 +43,7 @@ import coil.compose.AsyncImage
 //import com.google.accompanist.pager.pagerTabIndicatorOffset
 //import com.google.accompanist.pager.rememberPagerState
 import com.serhiibaliasnyi.weatherprophet.R
+import com.serhiibaliasnyi.weatherprophet.data.WeatherModel
 import com.serhiibaliasnyi.weatherprophet.ui.theme.BlueLight
 import kotlinx.coroutines.launch
 
@@ -184,8 +186,37 @@ fun TabLayout(){
             LazyColumn(
                 modifier=Modifier.fillMaxSize()
             ) {
-                items(15){
-                    ListItem()
+                //items(15){
+                //    ListItem()
+                //}
+                itemsIndexed(
+                    listOf(
+                        WeatherModel(
+                        "Killarney",
+                             "10:00",
+                        "25 'C",
+                        "Sunny",
+                        "//cdn.weatherapi.com/weather/64x64/day/116.png",
+                            "",
+                        "",
+                        ""
+                    ),
+                        WeatherModel(
+                            "Killarney",
+                            "19/04/2024",
+                            "",
+                            "Sunny",
+                            "//cdn.weatherapi.com/weather/64x64/day/116.png",
+                            "18",
+                            "12",
+                            "qwqeqweq"
+                        ),
+
+
+                        )
+                ){
+                    _, item->
+                    ListItem(item)
                 }
             }
 

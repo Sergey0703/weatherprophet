@@ -53,6 +53,7 @@ dependencies {
     //implementation("com.google.accompanist:accompanist-pager:0.19.0")
     //implementation("com.google.accompanist:accompanist-pager-indicators:0.19.0")
     //implementation("androidx.compose.foundation.pager")
+    implementation("com.android.volley:volley:1.2.1")
     implementation("androidx.compose.foundation:foundation:1.4.0")
 
     implementation(libs.androidx.core.ktx)
@@ -63,6 +64,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.tools.core)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     implementation("io.coil-kt:coil-compose:2.0.0-rc01")
