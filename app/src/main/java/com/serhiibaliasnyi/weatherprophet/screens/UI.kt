@@ -3,14 +3,18 @@ package com.serhiibaliasnyi.weatherprophet.screens
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,6 +26,49 @@ import coil.compose.AsyncImage
 import com.serhiibaliasnyi.weatherprophet.data.WeatherModel
 import com.serhiibaliasnyi.weatherprophet.ui.theme.BlueLight
 
+
+@Composable
+fun MainList(list:List<WeatherModel>, currentDays:MutableState<WeatherModel>){
+    LazyColumn(
+        modifier=Modifier.fillMaxSize()
+    ) {
+        //items(15){
+        //    ListItem()
+        //}
+        itemsIndexed(
+            list
+            /*listOf(
+                WeatherModel(
+                "Killarney",
+                     "10:00",
+                "25 'C",
+                "Sunny",
+                "//cdn.weatherapi.com/weather/64x64/day/116.png",
+                    "",
+                "",
+                ""
+            ),
+                WeatherModel(
+                    "Killarney",
+                    "19/04/2024",
+                    "",
+                    "Sunny",
+                    "//cdn.weatherapi.com/weather/64x64/day/116.png",
+                    "18",
+                    "12",
+                    "qwqeqweq"
+                ),
+
+
+                ) */
+        ){
+                _, item->
+            ListItem(item)
+        }
+    }
+    //end LazyColumn
+
+}
 //@Preview(showBackground = true)
 @Composable
 fun ListItem(item:WeatherModel) {

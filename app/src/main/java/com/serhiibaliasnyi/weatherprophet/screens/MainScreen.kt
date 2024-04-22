@@ -49,9 +49,9 @@ import com.serhiibaliasnyi.weatherprophet.ui.theme.BlueLight
 import kotlinx.coroutines.launch
 
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
-fun MainCard(){
+fun MainCard(currentDay:MutableState<WeatherModel>){
 
     Column(
         modifier= Modifier
@@ -75,11 +75,12 @@ fun MainCard(){
                 ){
                    Text(
                        modifier = Modifier.padding(top=5.dp, start=5.dp),
-                       text = "10 April 2024",
+                       text = currentDay.value.time,
                        style= TextStyle(fontSize=15.sp),
                        color= Color.White
                    )
-                    AsyncImage(model = "https://cdn.weatherapi.com/weather/64x64/day/116.png",
+                    AsyncImage(
+                        model = "https:"+currentDay.value.icon,
                         contentDescription = "weather",
                         modifier= Modifier
                             .size(35.dp)
@@ -87,17 +88,17 @@ fun MainCard(){
                 }
 
                Text(
-                   text = "Killarney",
+                   text = currentDay.value.city,
                    style= TextStyle(fontSize=24.sp),
                    color= Color.White
                )
                Text(
-                   text = "14℃",
+                   text = "${currentDay.value.currentTemp.toFloat().toInt()}℃",
                    style= TextStyle(fontSize=65.sp),
                    color= Color.White
                )
                Text(
-                   text = "Sunny",
+                   text = currentDay.value.condition,
                    style= TextStyle(fontSize=16.sp),
                    color= Color.White
                )
@@ -115,7 +116,8 @@ fun MainCard(){
                    }
 
                    Text(
-                       text = "14℃/10℃",
+                       text = "${currentDay.value.maxTemp.toFloat().toInt()}℃/" +
+                               "${currentDay.value.minTemp.toFloat().toInt()}℃",
                        style= TextStyle(fontSize=16.sp),
                        color= Color.White
                    )
@@ -137,7 +139,7 @@ fun MainCard(){
 @OptIn(ExperimentalFoundationApi::class)
 //@Preview(showBackground = true)
 @Composable
-fun TabLayout(daysList: MutableState<List<WeatherModel>>){
+fun TabLayout(daysList: MutableState<List<WeatherModel>>, currentDay: MutableState<WeatherModel>){
     val tabList=listOf("HOURS","DAYS")
     val pagerState = rememberPagerState { 2 }
 
@@ -184,44 +186,7 @@ fun TabLayout(daysList: MutableState<List<WeatherModel>>){
             state = pagerState,
             modifier = Modifier.weight(1.0f)
         ) { index ->
-            LazyColumn(
-                modifier=Modifier.fillMaxSize()
-            ) {
-                //items(15){
-                //    ListItem()
-                //}
-                itemsIndexed(
-                    daysList.value
-                    /*listOf(
-                        WeatherModel(
-                        "Killarney",
-                             "10:00",
-                        "25 'C",
-                        "Sunny",
-                        "//cdn.weatherapi.com/weather/64x64/day/116.png",
-                            "",
-                        "",
-                        ""
-                    ),
-                        WeatherModel(
-                            "Killarney",
-                            "19/04/2024",
-                            "",
-                            "Sunny",
-                            "//cdn.weatherapi.com/weather/64x64/day/116.png",
-                            "18",
-                            "12",
-                            "qwqeqweq"
-                        ),
-
-
-                        ) */
-                ){
-                    _, item->
-                    ListItem(item)
-                }
-            }
-
+            MainList(list = daysList.value, currentDays = currentDay)
         }
 
 
